@@ -1,0 +1,33 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Library Management</title>
+ </head>
+ <body>
+ <h1>Library Management System</h1>
+ <form action="BookRegistrationServlet" method="post">
+     <h2>Add a Book</h2>
+     <input type="text" name="title" required>
+     <input type="text" name="author" required>
+     <input type = "number" name = "price" required> 
+     
+      <button type="submit">Add Book</button>
+ </form>
+ 
+ <form action="DeleteBook" method="post">
+    <h2>Delete a Book</h2>
+    <input type="number" name="id" required>
+<button type="submit">Delete Book</button>
+ </form>
+      <h2>View All Books</h2>
+      <a href="DisplayBooksServlet">Display Books</a>
+      <h2>Search for a Book</h2>
+<form action="SearchBooksServlet" method="get">
+     <input type="text" name="title" required>
+ <button type="submit">Search</button>
+ 
+ </form>
+ </body>
+ </html>

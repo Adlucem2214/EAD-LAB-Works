@@ -126,7 +126,7 @@
                     alert('Signup successful! Redirecting to login page...');
                     window.location.href = 'login.html';
                 } else {
-                    alert(`Signup failed: ${result}`);
+                     alert(`Signup failed: ${result.message || "An unexpected error occurred. Please try again."}`);
                 }
             } catch (error) {
                 console.error('Error during signup:', error);

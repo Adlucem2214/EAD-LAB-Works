@@ -6,8 +6,11 @@ import com.example.carrentalsystem.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
 import java.util.Optional;
@@ -21,6 +24,11 @@ public class AuthService {
     private final String SECRET_KEY = "f0cb7a4b2c0a6b812ed1d16f0c4327e6d27e392b8b5f9a671ff07f13e9fcd9f3"; // Secure key
 
     public String register(User user) {
+    	
+    	 if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+    	        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email is already in use!");
+    	    }
+    	
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "User registered successfully!";
